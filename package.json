@@ -1,0 +1,24 @@
+{
+  "name": "rambo",
+  "version": "1.0.0",
+  "description": "command validation",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+    "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuCollet/rambo.git"
+  },
+  "author": "Julien Collet",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "morgan": "^1.8.2",
+    "patch": "0.0.1",
+    "pdfkit": "^0.8.2"
+  }
+}
