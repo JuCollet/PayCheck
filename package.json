@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/app.js"
   },
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/JuCollet/rambo.git"
   },
@@ -17,8 +17,11 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
+    "mongoose": "^4.10.5",
     "morgan": "^1.8.2",
     "patch": "0.0.1",
-    "pdfkit": "^0.8.2"
+    "pdfkit": "^0.8.2",
+    "pug": "^2.0.0-rc.2",
+    "sendgrid": "^5.1.1"
   }
 }

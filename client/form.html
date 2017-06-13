@@ -1,0 +1,86 @@
+<div class="uk-container uk-container-small uk-margin-large-top" ng-controller="form">
+    <div class="uk-width-2-3 uk-align-center">
+      <h2 class="uk-heading-divider">Demande de paiement</h2>
+      
+      <form class="uk-form-stacked" name="form" ng-submit="sendRequest()" novalidate>
+        <div class="uk-grid-small" uk-grid>
+          <div class="uk-width-1-2">
+            <label class="uk-form-label" for="user">Qui es-tu ?</label>
+            <select class="uk-select" id="user" ng-model="username" ng-init="username = users[0].name">
+              <option ng-repeat="user in users" ng-value="user.name">{{user.name}}</option>
+            </select>
+          </div>
+          <div class="uk-width-1-2">
+            <label class="uk-form-label" for="provider">Quel est le fournisseur ?</label>
+            <select class="uk-select" id="provider" ng-model="provider" ng-init="provider = providers[0]">
+              <option ng-repeat="provider in providers" ng-value="provider">{{provider}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="uk-grid-small" uk-grid ng-repeat="product in products">
+          <div class="uk-width-expand">
+            <label class="uk-form-label" for="description" ng-show="$index === 0">Description</label>
+            <input class="uk-input" name="description" type="text" placeholder="Description du produit" ng-model="product.description">
+          </div>
+          <div class="uk-width-1-6">
+            <label class="uk-form-label" for="prix" ng-show="$index === 0">Prix</label>
+            <input class="uk-input" name="prix" type="number" placeholder="€" ng-model="product.price">
+          </div>
+          <div class="uk-width-1-6">
+            <label class="uk-form-label" for="amount" ng-show="$index === 0">Quantité</label>
+            <input class="uk-input" name="amount" type="text" placeholder="1" ng-model="product.amount">
+          </div>
+        </div>
+        <div class="uk-margin-small-top">
+          <a class="uk-link-text uk-text-small" ng-click="addProduct()">Ajouter un produit</a>
+        </div>
+        <div class="uk-margin">
+          <label class="uk-form-label" for="budget">Budget</label>
+          <input class="uk-input" name="budget" type="text" placeholder="Budget à utiliser" ng-model="budget">
+        </div>
+        <div class="uk-margin">
+          <label class="uk-form-label" for="comment">Commentaire (facultatif)</label>
+          <textarea class="uk-textarea" name="comment" ng-model="comment"></textarea>
+        </div>
+        <div class="uk-grid-small uk-margin" uk-grid>
+          <div class="uk-width-auto">
+            <label class="uk-form-label" for="visa"><input class="uk-checkbox uk-margin-small-right" type="checkbox" name="visa" ng-model="visa">Paiement Visa</label>
+          </div>
+          <div class="uk-width-auto">
+            <label class="uk-form-label" for="manon"><input class="uk-checkbox uk-margin-small-right" type="checkbox" name="manon" ng-model="manon">Envoyer une copie à Manon</label>
+          </div>
+          <div class="uk-width-auto">
+            <label class="uk-form-label" for="emergency"><input class="uk-checkbox uk-margin-small-right" type="checkbox" name="emergency" ng-model="emergency">Demande urgente</label>
+          </div>
+        </div>
+        <div class="uk-margin">
+          <h1>Total : {{ totalPrice() }} €</h1>
+        </div>
+        <button class="uk-button uk-button-primary" type="submit">Confirmer</button>      
+      </form>
+      <div class="uk-margin">
+        <p><a class="uk-link-muted uk-text-small" uk-toggle="target: #addUser" type="button">Ajouter un utilisateur</a></p>
+      </div>
+    </div>
+    
+    <div id="addUser" uk-modal="center: true">
+      <div class="uk-modal-dialog uk-modal-body" uk-overflow-auto>
+        <h2 class="uk-modal-title">Nouvel utilisateur</h2>
+        <form class="uk-form-stacked">
+          <div>
+            <label class="uk-form-label" for="newName">Quel est ton prénom ?</label>
+            <input class="uk-input uk-form-width-large" name="newName" type="text" placeholder="Ton prénom" ng-model="newUser.name">
+          </div>
+          <div class="uk-margin-small-top">
+            <label class="uk-form-label" for="newMail">Quelle est ton adresse mail ?</label>
+            <input class="uk-input uk-form-width-large" name="newName" type="email" placeholder="Ton adresse e-mail" ng-model="newUser.email">
+          </div>
+          <div>
+            <button class="uk-button uk-button-secondary uk-margin-top uk-modal-close" type="submit" ng-click="addUser()">Confirmer</button>      
+          </div>
+        </form>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+      </div>
+    </div>
+
+</div>

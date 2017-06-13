@@ -1,0 +1,28 @@
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+
+html {
+    font-family: 'Lato', sans-serif;
+}
+
+.confirm-container {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+    width:450px;
+    height:250px;
+    
+    text-align: center;
+}
+
+.confirm-container i {
+    font-size: 150px;
+    color: #3fcc08;
+}
+
+.confirm-container .confirm-title {
+    margin-top: 20px;
+}

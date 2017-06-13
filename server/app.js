@@ -3,54 +3,26 @@
 const express = require('express'),
       path = require('path'),
       bodyParser = require('body-parser'),
-      PDFDocument = require ('pdfkit'),
       logger = require('morgan'),
-      fs = require('fs'),
+      userRouter = require('./routes/users'),
+      requestRouter = require('./routes/requests'),
       app = express();
       
+require('./db');
+
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-app.get('/validation', function(req, res){
-    
-    const doc = new PDFDocument;
+app.set('views', path.join(__dirname,'./views'));
+app.set('view engine', 'pug');
 
-    doc.pipe(fs.createWriteStream('output.pdf'));
-    
-    doc.font(path.join(__dirname,'./fonts/arial.ttf'))
-       .fontSize(25)
-       .text('This shit is awesome dude!', 100, 100);
-    
-    doc.addPage()
-       .fontSize(25)
-       .text('Hello boy !', 100, 100);
-    
-    doc.save()
-       .moveTo(100, 150)
-       .lineTo(100, 250)
-       .lineTo(200, 250)
-       .fill("#FF3300");
-    
-    doc.scale(0.6)
-       .translate(470, -380)
-       .path('M 250,75 L 323,301 131,161 369,161 177,301 z')
-       .fill('red', 'even-odd')
-       .restore();
-    
-    doc.end();
-    
-    doc.pipe(res);
-
-});
-
+app.use(express.static(path.join(__dirname, '/../client')));
+app.use('/users', userRouter);
+app.use('/requests', requestRouter);
 
 app.use(function(err,req,res,next){
   res.status(err.status || 500);
-  res.json({
-    error : {
-      message : err.message
-    }
-  });
+  res.render('notification', {icon: "fa-times", iconColor:"#ff2400", message: err.message});
 });
 
 app.listen(process.env.PORT || 8080, function(){

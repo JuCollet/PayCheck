@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Paiement Visa à autoriser
+  body(style='background-color:#f2f2f2;')
+    center
+      p &nbsp;
+      table(border='0' cellpadding='0' width='650' style='background-color:#ffffff;color:#1A1A1A')
+        tr
+          td(align="left" valign="top" style="padding:20px 75px 0px 75px;font-family: Helvetica, Arial, sans-serif;font-weight:400;font-size:17px;color:#333333;")
+            <!--[if gte mso 9]>
+            <p style="line-height:.1em;">&nbsp;</p>
+            <![endif]-->
+            h1(style="font-family:Helvetica,Arial,sans-serif;font-size:40px;font-weight:700;color:#303030;") Paiement à autoriser
+            p(style="font-family:Helvetica,Arial,sans-serif;color:#303030;") #{name} voudrait effectuer un paiement Visa de <b>#{price}</b>,<br>chez #{provider}, pour l'impression de :
+            ul
+              each val in array
+                li= val.description
+            p(style="font-family:Helvetica,Arial,sans-serif;color:#303030;") Sur le budget <b>#{budget}</b>
+
+        tr
+          td(align="left" valign="top" style="font-family:Helvetica,Arial,sans-serif;color:#1A1A1A;padding:20px 75px 0px 75px;")
+            a(href=link target="_blank" style="font-size:16px;font-weight:700;font-family:Helvetica,Arial,sans-serif;color:#ffffff;text-decoration:none;border-radius:3px;background-color:#02e263;border-top:12px solid #02e263;border-bottom:12px solid #02e263;border-right:18px solid #02e263;border-left:18px solid #02e263;display:inline-block;") Autoriser le paiement
+            p &nbsp;
+            p &nbsp;
