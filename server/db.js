@@ -8,6 +8,6 @@ mongoose.connect(`mongodb://${process.env.mongo_user}:${process.env.mongo_pass}$
   if(err) {
     console.log('Unable to connect to MongoDB');
   } else {
-    console.log('Successfully connected to MongoDB !')
+    console.log('Successfully connected to MongoDB !');
   }
 });
