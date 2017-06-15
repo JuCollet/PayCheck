@@ -25,9 +25,9 @@ requestRouter.route('/')
         });
     });
 
-requestRouter.route('/validate/:id')
+requestRouter.route('/validate/:token')
     .get(function(req, res, next){
-        Request.findByIdAndUpdate(req.params.id, {$set:{validated:true}}, {new: true}, function(err, request){
+        Request.findOneAndUpdate({validationToken:req.params.token}, {$set:{validated:true}}, {new: true}, function(err, request){
             if(err) return next(err);
             if(request) {
                 if(request.visa === false || request.authorized === true){
@@ -42,10 +42,9 @@ requestRouter.route('/validate/:id')
             }
         });
     });
-    
-requestRouter.route('/authorize/:id')
+requestRouter.route('/authorize/:token')
     .get(function(req, res, next){
-        Request.findByIdAndUpdate(req.params.id, {$set:{authorized:true}}, {new: true}, function(err, request){
+        Request.findOneAndUpdate({autorizationToken:req.params.token}, {$set:{authorized:true}}, {new: true}, function(err, request){
             if(err) return next(err);
             if(request) {
                 if(request.validated === true) {

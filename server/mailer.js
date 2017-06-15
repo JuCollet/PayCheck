@@ -17,7 +17,7 @@ const paymentValidation = function(request, user){
           provider : request.provider,
           array: request.products,
           budget: request.budget,
-          link: config.baseUrls.origin+"requests/validate/"+request._id
+          link: config.baseUrls.origin+"requests/validate/"+request.validationToken
         })),
         mail = new helper.Mail(from_email, subject, to_email, content);
 
@@ -42,7 +42,7 @@ const paymentAuthorization = function(request, user){
           provider : request.provider,
           array: request.products,
           budget: request.budget,
-          link: config.baseUrls.origin+"requests/authorize/"+request._id
+          link: config.baseUrls.origin+"requests/authorize/"+request.autorizationToken
         })),
         mail = new helper.Mail(from_email, subject, to_email, content);
 

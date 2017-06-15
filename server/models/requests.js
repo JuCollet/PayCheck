@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose'),
+      randtoken = require('rand-token'),
       Schema = mongoose.Schema;
 
 const productSchema = new mongoose.Schema({
@@ -22,6 +23,8 @@ const reqSchema = new mongoose.Schema({
   manon: Boolean,
   totalPrice: Number,
   provider: String,
+  autorizationToken: String,
+  validationToken: String,
   validated: {
       type: Boolean,
       default: false
@@ -32,6 +35,13 @@ const reqSchema = new mongoose.Schema({
   },
   },{
   timestamps:true
+});
+
+reqSchema.pre('save', function(next){
+  const request = this;
+  request.autorizationToken = Date.now()+randtoken.generate(16);
+  request.validationToken = Date.now()+randtoken.generate(12);
+  next();
 });
 
 const Request = mongoose.model('Request', reqSchema);
